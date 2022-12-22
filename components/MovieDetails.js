@@ -60,7 +60,7 @@ const MovieDetails = ({ data }) => {
                 </p>
             </div>
 
-            <div className='grid  md:grid-cols-2 md:gap-12 gap-4 justify-center  md:place-items-center '>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                 <DetailsTag title='status' value={status} />
                 <DetailsTag title='release_date' value={release_date} />
                 <DetailsTag title='movieRating' value={movieRating} />
@@ -113,7 +113,7 @@ const DetailsTag = ({ title, value }) => {
     return (
         <div className='flex gap-2 mb-4 text-left justify-between '>
             <h2 className='text-xl md:text-2xl uppercase font-bold mr-2'>
-                {title}:{" "}
+                {title}:
             </h2>
             <p className='md:whitespace-nowrap truncate md:text-xl px-4 text-center bg-slate-300 bg-opacity-50 rounded-3xl p-1 ring ring-4 ring-slate-200  '>
                 {value}

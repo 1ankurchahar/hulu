@@ -66,24 +66,26 @@ const SingleMovie = () => {
                     style={{
                         backgroundImage: `url(${bg_poster_img_path})`,
                     }}>
-                    <MovieDetails data={movierData} />
+                    <div className='p-2'>
+                        <MovieDetails data={movierData} />
 
-                    {/* trailer */}
-                    <div
-                        className='container p-8 my-8 overflow-hidden mx-auto flex  justify-evenly  first-letter:
+                        {/* trailer */}
+                        <div
+                            className='container p-8 my-8 overflow-hidden mx-auto flex  justify-evenly  first-letter:
                       bg-gray-800 bg-opacity-40 rounded-3xl
                     '>
-                        {trailer &&
-                            trailer.map((item) => {
-                                return (
-                                    <Youtube
-                                        className=' w-full  md:w-3/4 h-auto'
-                                        key={item.key}
-                                        videoId={item.key}
-                                        opts={youtubeOptions}
-                                    />
-                                );
-                            })}
+                            {trailer &&
+                                trailer.map((item) => {
+                                    return (
+                                        <Youtube
+                                            className=' w-full  md:w-3/4 h-auto'
+                                            key={item.key}
+                                            videoId={item.key}
+                                            opts={youtubeOptions}
+                                        />
+                                    );
+                                })}
+                        </div>
                     </div>
                 </div>
             </div>

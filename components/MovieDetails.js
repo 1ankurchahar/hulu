@@ -60,7 +60,7 @@ const MovieDetails = ({ data }) => {
                 </p>
             </div>
 
-            <div className='grid  lg:grid-cols-3 sm:grid-cols-2 md:gap-12 gap-4 justify-center  md:place-items-center '>
+            <div className='grid  md:grid-cols-2 md:gap-12 gap-4 justify-center  md:place-items-center '>
                 <DetailsTag title='status' value={status} />
                 <DetailsTag title='release_date' value={release_date} />
                 <DetailsTag title='movieRating' value={movieRating} />

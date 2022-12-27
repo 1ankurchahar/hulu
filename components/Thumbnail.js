@@ -1,26 +1,27 @@
 import Image from "next/image";
 import { HandThumbUpIcon } from "@heroicons/react/24/outline";
 import Router, { useRouter } from "next/router";
+const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
 
 const Thumbnail = ({ result }) => {
-    const BASE_IMG_URL = "https://image.tmdb.org/t/p/original";
     const router = useRouter();
 
+    const {
+        id,
+        title,
+        original_name,
+        backdrop_path,
+        poster_path,
+        overview,
+        media_type,
+        release_date,
+        first_air_date,
+        vote_count,
+    } = result;
+
     const handleClick = () => {
-        // router.push(
-        //     {
-        //         pathname: `/movies/${result.title || result.original_name}`,
-        //         query: {
-        //             result: JSON.stringify(result),
-        //         },
-        //     },
-        //     `/movies/${result.title || result.original_name}`,
-        // );
-        // console.log(result);
-
-        router.push(`/movie/${result.id}`);
+        router.push(`/movie/${id}`);
     };
-
     return (
         <div
             onClick={handleClick}
@@ -29,23 +30,23 @@ const Thumbnail = ({ result }) => {
                 priority
                 className='rounded-3xl'
                 layout='responsive'
-                alt={result.title || result.original_name}
+                alt={title || original_name}
                 height={480}
                 width={720}
                 src={
-                    `${BASE_IMG_URL}${result.backdrop_path}` ||
-                    `${BASE_IMG_URL}${result.poster_path} `
+                    BASE_IMG_URL +
+                    (backdrop_path == null ? poster_path : backdrop_path)
                 }
             />
             <div className='p-2'>
-                <p className='truncate max-w-md'>{result.overview}</p>
+                <p className='truncate max-w-md'>{overview}</p>
                 <h2 className='mt-1 text-2xl text-white transition-all duration-100 ease-in-out group-hover:font-bold'>
-                    {result.title || result.original_name}
+                    {title || original_name}
                 </h2>
                 <p className='flex items-center opacity-0 group-hover:opacity-100'>
-                    {result.media_type && `${result.media_type} . `}
-                    {result.release_date || result.first_air_date} .
-                    <HandThumbUpIcon className='h-5 mx-2' /> {result.vote_count}
+                    {media_type && `${media_type} . `}
+                    {release_date || first_air_date} .
+                    <HandThumbUpIcon className='h-5 mx-2' /> {vote_count}
                 </p>
             </div>
         </div>

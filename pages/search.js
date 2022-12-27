@@ -27,19 +27,23 @@ const SearchPage = () => {
                 <Header />
                 <div className='flex flex-col place-items-center  max-w-4xl px-8 mx-auto'>
                     <div className='flex place-items-baseline'>
-                        <h1 className=' tracking-wider font-thin text-6xl mb-8 md:text-9xl'>
+                        <h1 className=' tracking-wider font-thin text-6xl mb-8 md:text-9xl uppercase'>
                             Search
                         </h1>
                         <span className='text-7xl text-bold text-red-500 animate-bounce '>
                             .
                         </span>
-                        <span className='text-7xl text-bold text-red-500 animate-bounce delay-75'>
+                        <span
+                            className='text-7xl text-bold text-red-500 
+                            animate-bounce'>
                             .
                         </span>
-                        <span className='text-7xl text-bold text-red-500 animate-bounce delay-100'>
+                        <span className='text-7xl text-bold text-red-500 animate-bounce '>
                             .
                         </span>
-                        <span className='text-7xl text-bold text-red-500 animate-bounce delay-150'>
+                        <span
+                            className='text-7xl text-bold text-red-500 
+                            animate-bounce'>
                             .
                         </span>
                     </div>

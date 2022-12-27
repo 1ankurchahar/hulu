@@ -22,17 +22,20 @@ const MovieDetails = ({ data }) => {
         genres,
         production_companies,
         homepage,
+        poster_path,
     } = data;
 
     const movieRating = String(vote_average).slice(0, 3);
     const getMovieRatingColor = () => {
-        if ((movieRating) => 8) return "bg-green-800 p-2 rounded-full";
-        else if (movieRating < 8 && movieRating > 5)
+        if (+movieRating >= 8) return "bg-green-800 p-2 rounded-full";
+        else if (+movieRating < 8 && +movieRating > 5)
             return "bg-yellow-500 p-2 rounded-full  ";
         else return "bg-red-500 p-2 rounded-full  ";
     };
+
+    console.log();
     return (
-        <div className='container mx-auto p-4 md:p-8 text-white bg-gray-800 bg-opacity-40 rounded-3xl'>
+        <div className='container mx-auto p-4 md:p-8 text-white bg-gray-800 bg-opacity-60 rounded-3xl'>
             <div className='relative'>
                 <div className='absolute top-4 left-2  z-10 text-xl p-2 text-white font-bold'>
                     <span className={getMovieRatingColor()}>{movieRating}</span>
@@ -44,7 +47,10 @@ const MovieDetails = ({ data }) => {
                     alt={title || original_name}
                     height={480}
                     width={720}
-                    src={BASE_IMG_URL + backdrop_path}
+                    src={
+                        BASE_IMG_URL +
+                        (backdrop_path == null ? poster_path : backdrop_path)
+                    }
                 />
             </div>
 
@@ -89,11 +95,13 @@ const MovieDetails = ({ data }) => {
                     {production_companies?.map((prodComp) => (
                         <div
                             key={prodComp.id}
-                            className='h-60 w-60 my-4 flex flex-shrink-0 flex-col align-middle justify-center place-items-center mr-4 bg-slate-300 bg-opacity-50 rounded-3xl p-1 ring ring-4 ring-slate-200 '>
-                            <img
+                            className='h-60 w-60 my-4 flex flex-shrink-0 flex-col align-middle justify-center place-items-center mr-4 bg-slate-300 bg-opacity-50 rounded-3xl p-1 ring-4 ring-slate-200 '>
+                            <Image
                                 className='h-24 w-2h-24 bg-white'
                                 src={BASE_IMG_URL + prodComp?.logo_path}
                                 alt={prodComp?.name}
+                                height={100}
+                                width={100}
                             />
                             <p className='p-2 my-2 w-4/5 text-xl text-center'>
                                 {prodComp?.name}
@@ -111,11 +119,11 @@ export default MovieDetails;
 
 const DetailsTag = ({ title, value }) => {
     return (
-        <div className='flex gap-2 mb-4 text-left justify-between '>
+        <div className='flex gap-2 mb-4 text-left justify-between shadow-xl px-2 py-4'>
             <h2 className='text-xl md:text-2xl uppercase font-bold mr-2'>
                 {title}:
             </h2>
-            <p className='md:whitespace-nowrap truncate md:text-xl px-4 text-center bg-slate-300 bg-opacity-50 rounded-3xl p-1 ring ring-4 ring-slate-200  '>
+            <p className='md:whitespace-nowrap truncate md:text-xl px-4 text-center bg-slate-300 bg-opacity-50 rounded-3xl p-1 ring-4 ring-slate-200  '>
                 {value}
             </p>
         </div>
